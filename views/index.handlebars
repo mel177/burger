@@ -1,0 +1,91 @@
+<h1>Eat-Da-Burger!</h1>
+
+<ul>
+  {{#each orders}}
+  <li>
+    <p>
+      {{this.id}}. {{this.order}}
+
+      <button data-orderid="{{this.id}}" class="delorder">Delete Order!</button>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+
+<h2>Create a Order</h2>
+<form id="createorder" class="button-size">
+  <textarea type="text" name="order"></textarea>
+  <button type="submit">Save Order!</button>
+</form>
+
+<h2>Update a Order</h2>
+<form id="updateorder" class="button-size">
+  <select name="id">
+		{{#each orders}}
+			<option value="{{this.id}}">{{this.order}}</option>
+		{{/each}}
+	</select>
+  <textarea type="text" name="order" placeholder="order"></textarea>
+  <button type="submit">Update Order!</button>
+</form>
+
+<script type="text/javascript">
+  $(".delorder").on("click", function(event) {
+    var id = $(this).data("orderid");
+
+    // Send the DELETE request.
+    $.ajax("/todos/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#createorder").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var newOrder = {
+      order: $("#createorder [name=order]").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/todos", {
+      type: "POST",
+      data: newOrder
+    }).then(
+      function() {
+        console.log("created new order");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#updateorder").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var id = $("[name=id]").val().trim();
+
+    var updatedOrder = {
+      order: $("#updateorder [name=order]").val().trim()
+    };
+
+    // Send the PUT request.
+    $.ajax("/todos/" + id, {
+      type: "PUT",
+      data: updatedOrder
+    }).then(
+      function() {
+        console.log("updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+</script>
