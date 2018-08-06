@@ -1,91 +1,49 @@
-<h1>Eat-Da-Burger!</h1>
+<div class ="container">
+    <div class="row">
+        <div class = "col-xs-12 text-center" id="top-bar">
+            <h1>EAT DA BURGER!</h1>
+        </div>
+        <div class="col-xs-6 text-center" class="task">
+            <div class"row">
+                {{#each burger_data}}
+                    {{#unless this.devoured}}
+                    <div class="col-xs-9 text-center">
+                        <pre>{{this.id}}. {{this.burger_data}}</pre>
+                    </div>
+              <div class="col-xs-3 text-center">
+                  <form method="POST" action="/burgers/update?_method=PUT"
+                  class="button-size">
+                  <input type="hidden" name="burger_id" type="text" value=
+                    {{this.id}}>
+                    <br>
+                    <button type="submit" class="btn btn-default">DEVOUR IT!</button>
+                  </form>
+              </div>     
+              {{/unless}}
+              {{/each}} 
+            </div>
+        </div>
 
-<ul>
-  {{#each orders}}
-  <li>
-    <p>
-      {{this.id}}. {{this.order}}
+        <div class="col-xs-6 text-center" class="task">
+            {{#each burger_data}}
+                {{#if this.devoured}}
+                <input class="form-control" type="text" placeholder=
+                "{{this.id}}. {{this.burger_name}}" readonly>
+             {{/if}}   
+             {{/each}}
+        </div>
+    </div>
+</div>
 
-      <button data-orderid="{{this.id}}" class="delorder">Delete Order!</button>
-    </p>
-  </li>
-  {{/each}}
-</ul>
-
-<h2>Create a Order</h2>
-<form id="createorder" class="button-size">
-  <textarea type="text" name="order"></textarea>
-  <button type="submit">Save Order!</button>
-</form>
-
-<h2>Update a Order</h2>
-<form id="updateorder" class="button-size">
-  <select name="id">
-		{{#each orders}}
-			<option value="{{this.id}}">{{this.order}}</option>
-		{{/each}}
-	</select>
-  <textarea type="text" name="order" placeholder="order"></textarea>
-  <button type="submit">Update Order!</button>
-</form>
-
-<script type="text/javascript">
-  $(".delorder").on("click", function(event) {
-    var id = $(this).data("orderid");
-
-    // Send the DELETE request.
-    $.ajax("/todos/" + id, {
-      type: "DELETE"
-    }).then(
-      function() {
-        console.log("deleted id ", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $("#createorder").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    var newOrder = {
-      order: $("#createorder [name=order]").val().trim()
-    };
-
-    // Send the POST request.
-    $.ajax("/todos", {
-      type: "POST",
-      data: newOrder
-    }).then(
-      function() {
-        console.log("created new order");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $("#updateorder").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    var id = $("[name=id]").val().trim();
-
-    var updatedOrder = {
-      order: $("#updateorder [name=order]").val().trim()
-    };
-
-    // Send the PUT request.
-    $.ajax("/todos/" + id, {
-      type: "PUT",
-      data: updatedOrder
-    }).then(
-      function() {
-        console.log("updated id ", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-</script>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center enter_section">
+            <form action="/burgers/create"method="POST">
+            <input type="text" name="burger_name" class="form-control"
+            value="" id="enter_text">
+            <button type="submit" class="btn btn-primary" id="text-enter-button">SUBMIT</button>
+            </form>
+            <p>Enter in a burger you would like to eat!</p>
+            </div>
+    </div>
+</div>
