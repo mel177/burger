@@ -42,16 +42,8 @@ h1 {
     background-color: #81ff94;
 }
 
-.burgerEaten {
-    font-family: 'Crafty Girls', cursive;
-    font-weight: normal;
-    font-size: 20px;
-    text-align: center;
-
-    border-radius: 25px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #ffd1c9;
+#devoured {
+    float: left;
 }
 
 h2 {
@@ -66,3 +58,8 @@ h2 {
 }
 
 
+
+#add {
+    clear: both;
+    margin-left: 25%;
+}
