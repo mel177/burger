@@ -17,8 +17,8 @@ body {
 
 
 h1 {
-    text-align: center;
-    font-family: 'comic sans', cursive;
+    text-align: right;
+    font-family: 'Fontdiner Swanky', cursive;
     font-size: 65px;
     margin: 50px;
 }
@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-     text-align: center;
+     text-align: right;
     font-family: 'comic sans', cursive;
     font-size: 40px;
     margin: 50px;
