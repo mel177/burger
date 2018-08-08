@@ -23,6 +23,11 @@ h1 {
     text-align: left;
     padding-right: 10px;
 }
+#avail {
+    float: left;
+    margin-right: 6%;
+    margin-left: 10%;
+}
 #devoured {
     float: left;
 }
