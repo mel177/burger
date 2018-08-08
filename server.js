@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
+var port = process.env.PORT || 8080;
 
 var app = express();
 app.use(express.static(__dirname +'/public'));
@@ -19,5 +20,4 @@ app.set('view engine','handlebars');
 var routes = require('./controller/routes.js');
 app.use('/',routes);
 
-var port = 8080;
 app.listen(port);
