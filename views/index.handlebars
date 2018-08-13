@@ -13,14 +13,14 @@
                      <div id="left">   
                         <pre>{{this.id}}. {{this.burger_data}}</pre>
                     {{!-- </div> --}}
-              <div class="col-xs-4 text-left">
+              <div class="col-xs-12 text-left">
                   <form method="POST" action="/burgers/update?_method=PUT"
                   class="button-size">
                     <input type="hidden" name="burger_id" type="text" value=
                     {{this.id}}>
                     {{this.burger_name}}
                     <br>
-                    <button type="submit" class="btn btn-primary">DEVOUR IT!</button>
+                    <button type="submit" class="btn btn-primary" id="devourButton">DEVOUR IT!</button>
                   </form>
               </div>     
             </div>
